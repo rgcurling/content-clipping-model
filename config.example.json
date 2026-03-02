@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-03-02T12:00:00Z",
+  "streamer_login": "example_streamer",
+  "broadcaster_id": "123456789",
+  "period": {
+    "start": "2026-02-23T12:00:00Z",
+    "end": "2026-03-02T12:00:00Z"
+  },
+  "total_clips": 2,
+  "clips": [
+    {
+      "clip_id": "AbcDefGhi123",
+      "title": "Amazing play!",
+      "url": "https://clips.twitch.tv/AbcDefGhi123",
+      "thumbnail_url": "https://clips-media-assets2.twitch.tv/AbcDefGhi123-preview-480x272.jpg",
+      "view_count": 9821,
+      "duration": 30.0,
+      "created_at": "2026-02-28T18:45:00Z",
+      "creator_name": "some_viewer"
+    },
+    {
+      "clip_id": "XyzUvwRst456",
+      "title": "Incredible moment",
+      "url": "https://clips.twitch.tv/XyzUvwRst456",
+      "thumbnail_url": "https://clips-media-assets2.twitch.tv/XyzUvwRst456-preview-480x272.jpg",
+      "view_count": 4210,
+      "duration": 15.5,
+      "created_at": "2026-03-01T09:12:00Z",
+      "creator_name": "another_viewer"
+    }
+  ]
+}
