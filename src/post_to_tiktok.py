@@ -1,8 +1,10 @@
 import argparse
+import base64
 import hashlib
 import json
 import math
 import os
+import secrets
 import sys
 import threading
 import time
@@ -108,13 +110,20 @@ def _save_token(access_token: str):
     )
 
 
+def _pkce_pair() -> tuple[str, str]:
+    code_verifier = base64.urlsafe_b64encode(secrets.token_bytes(32)).rstrip(b"=").decode()
+    digest = hashlib.sha256(code_verifier.encode()).digest()
+    code_challenge = base64.urlsafe_b64encode(digest).rstrip(b"=").decode()
+    return code_verifier, code_challenge
+
+
 def authenticate_tiktok(client_key: str, client_secret: str) -> str:
     cached = _load_cached_token()
     if cached:
         print("Using cached TikTok token.")
         return cached
 
-    # Build auth URL
+    code_verifier, code_challenge = _pkce_pair()
     state = hashlib.sha256(os.urandom(16)).hexdigest()[:16]
     params = {
         "client_key": client_key,
@@ -122,6 +131,8 @@ def authenticate_tiktok(client_key: str, client_secret: str) -> str:
         "response_type": "code",
         "redirect_uri": "http://localhost:8080/callback",
         "state": state,
+        "code_challenge": code_challenge,
+        "code_challenge_method": "S256",
     }
     auth_url = TIKTOK_AUTH_URL + "?" + urlencode(params)
 
@@ -150,6 +161,7 @@ def authenticate_tiktok(client_key: str, client_secret: str) -> str:
             "code": _auth_code,
             "grant_type": "authorization_code",
             "redirect_uri": "http://localhost:8080/callback",
+            "code_verifier": code_verifier,
         },
         timeout=15,
     )
