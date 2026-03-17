@@ -9,3 +9,10 @@ __pycache__/
 
 # Mac junk
 .DS_Store
+
+# Generated output
+clips.json
+output/
+
+# TikTok token cache
+.tiktok_token
