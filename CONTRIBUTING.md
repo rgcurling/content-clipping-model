@@ -15,7 +15,7 @@ Thanks for your interest in contributing! 🎉
 - Update documentation if needed
 
 ## Reporting Issues
-Use the [issue tracker](https://github.com/your-username/your-repo/issues) and provide:
+Open an issue on the repository and provide:
 - Clear description of the bug
 - Steps to reproduce
 - Expected behavior
