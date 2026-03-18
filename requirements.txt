@@ -1,0 +1,5 @@
+requests
+python-dotenv
+yt-dlp
+anthropic
+cloudscraper
